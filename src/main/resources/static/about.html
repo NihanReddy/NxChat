@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | NxChat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="auth.css">
+    <style>
+        .page-content {
+            background: rgba(26, 43, 44, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 48px;
+            color: #fff;
+            max-width: 800px;
+            margin: 40px auto;
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
+        .page-content h2 { margin-bottom: 24px; font-size: 36px; color: var(--primary); }
+        .page-content p { color: var(--text-secondary); line-height: 1.8; margin-bottom: 24px; font-size: 18px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+        .stat-card { background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); border-radius: 16px; text-align: center; padding: 32px 16px; }
+        .stat-value { font-size: 32px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+        .stat-label { font-size: 14px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; }
+    </style>
+</head>
+<body class="dark" data-theme="dark">
+    <div class="bg-ambient"></div>
+    <header>
+        <a href="login.html" class="logo" style="text-decoration: none;">NxChat</a>
+        <div class="nav-actions">
+            <a href="features.html" class="nav-link">Features</a>
+            <a href="about.html" class="nav-link" style="color: var(--primary);">About</a>
+            <a href="help.html" class="nav-link">Help</a>
+            <a href="login.html" class="btn-primary" style="padding: 8px 16px; border-radius: 99px; font-size: 14px; text-decoration: none;">Sign In</a>
+        </div>
+    </header>
+    <main style="display: block;">
+        <div class="page-content">
+            <h2>The Next Evolution of Sync</h2>
+            <p>NxChat is built on the premise that digital communication should be instantaneous, distraction-free, and aesthetically refined. We stripped away the noise and bloated features of traditional messaging platforms to focus entirely on the signal.</p>
+            <p>Our core USP is simple and practical: if a user knows your email or mobile number, they can establish connection instantly.</p>
+            <p>Designed for teams, communities, and individuals who demand high performance and a premium atmospheric interface.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">&lt;50ms</div>
+                    <div class="stat-label">Message Latency</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">Uptime Architecture</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">End-to-End</div>
+                    <div class="stat-label">Security Focus</div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="copyright">&copy; 2024 NxChat. Precision in Every Message.</div>
+    </footer>
+    <script src="auth.js"></script>
+</body>
+</html>

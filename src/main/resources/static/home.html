@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NxChat | Experience the Weightless Interface</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #051414;
+            --primary-cyan: #40f2fe;
+            --text-white: #ffffff;
+            --text-dim: rgba(255, 255, 255, 0.6);
+            --font: 'Outfit', sans-serif;
+            --accent-purple: #9a76ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-white);
+            font-family: var(--font);
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Atmospheric Background */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(64, 242, 254, 0.05) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(138, 63, 252, 0.05) 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        header {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--primary-cyan);
+        }
+
+        nav {
+            display: flex;
+            gap: 40px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        nav a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--text-white);
+        }
+
+        nav a.active {
+            border-bottom: 2px solid var(--primary-cyan);
+            padding-bottom: 4px;
+        }
+
+        .auth-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .login-link {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .login-link:hover {
+            color: var(--text-white);
+        }
+
+        .signup-btn {
+            background: var(--primary-cyan);
+            color: #001a1a;
+            padding: 12px 28px;
+            border-radius: 99px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            box-shadow: 0 0 20px rgba(64, 242, 254, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .signup-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(64, 242, 254, 0.6);
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 40px;
+        }
+
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 8px 20px;
+            border-radius: 99px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        .badge span {
+            width: 6px;
+            height: 6px;
+            background: #ff40ac;
+            border-radius: 50%;
+        }
+
+        h1 {
+            font-size: 92px;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+            max-width: 900px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #40f2fe, #bb86fc);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 20px;
+            color: var(--text-dim);
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: 48px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn-primary {
+            background: var(--primary-cyan);
+            color: #001a1a;
+            padding: 18px 40px;
+            border-radius: 99px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            box-shadow: 0 10px 40px rgba(64, 242, 254, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 50px rgba(64, 242, 254, 0.5);
+        }
+
+        .btn-ghost {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-dim);
+            padding: 18px 40px;
+            border-radius: 99px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-ghost:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-white);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        h1 { animation-delay: 0.2s; }
+        .hero-desc { animation-delay: 0.4s; }
+        .hero-actions { animation-delay: 0.6s; }
+
+    </style>
+</head>
+<body>
+    <div class="bg-glow"></div>
+
+    <header>
+        <div class="logo">NxChat</div>
+        <nav>
+            <a href="home.html" class="active">Home</a>
+            <a href="about.html">About</a>
+            <a href="features.html">Features</a>
+        </nav>
+        <div class="auth-links">
+            <a href="login.html" class="login-link">Login</a>
+            <a href="signup.html" class="signup-btn">Sign Up</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="badge animate">
+            <span></span>CONNECT WITH EMAIL OR MOBILE
+        </div>
+
+        <h1 class="animate">Experience the <br><span class="gradient-text">Next-level</span> Chatting</h1>
+        
+        <p class="hero-desc animate">
+            NxChat transcends traditional messaging. A high-fidelity environment for those who value speed, clarity, and privacy. If you know a user's email or mobile number, you can establish connection instantly.
+        </p>
+
+        <div class="hero-actions animate">
+            <a href="chat.html" class="btn-primary" onclick="checkAuth(event)">Start Chatting Now</a>
+                <script>
+                    function checkAuth(event) {
+                        if (!localStorage.getItem('token')) {
+                            window.location.href = 'login.html';
+                            event.preventDefault();
+                            return false;
+                        }
+                    }
+                </script>
+            <a href="features.html" class="btn-ghost">View Features</a>
+        </div>
+    </main>
+
+</body>
+</html>

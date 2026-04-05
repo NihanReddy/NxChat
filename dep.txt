@@ -1,0 +1,7 @@
+com.chatflow:chatflow:jar:0.0.1-SNAPSHOT
++- org.springframework.boot:spring-boot-starter-data-jpa:jar:3.2.0:compile
+|  \- org.hibernate.orm:hibernate-core:jar:6.3.1.Final:compile
+|     \- net.bytebuddy:byte-buddy:jar:1.14.10:runtime
+\- org.springframework.boot:spring-boot-starter-test:jar:3.2.0:test
+   \- org.mockito:mockito-core:jar:5.7.0:test
+      \- net.bytebuddy:byte-buddy-agent:jar:1.14.10:test

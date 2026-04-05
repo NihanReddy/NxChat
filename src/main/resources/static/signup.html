@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | NxChat</title>
+    <meta name="description" content="Join NxChat today. Experience the next evolution of digital intimacy.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+    <div class="bg-ambient"></div>
+
+    <header>
+        <div class="logo">NxChat</div>
+        <div class="nav-actions">
+            <button class="icon-button" aria-label="Toggle Theme" id="themeToggle">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 3c.132 0 .263 0 .393.007a9 9 0 0 0 9.6 9.6A9 9 0 1 1 12 3z"/>
+                </svg>
+            </button>
+            <a href="help.html" class="nav-link">Help</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="hero-content">
+            <h1>Simple <br><span class="gradient-text">Smart,Secure</span></h1>
+            <p class="hero-description">Experience the next evolution of digital world. Minimal by design, limitless by nature.</p>
+            
+            <div class="users-online">
+                <div class="avatar-stack">
+                    <img src="https://ui-avatars.com/api/?name=User+G&background=random" alt="User G" class="avatar">
+                    <img src="https://ui-avatars.com/api/?name=User+H&background=random" alt="User H" class="avatar">
+                    <img src="https://ui-avatars.com/api/?name=User+I&background=random" alt="User I" class="avatar">
+                </div>
+                <div class="stats-text">+2.4k users online</div>
+            </div>
+        </div>
+
+        <div class="auth-card">
+            <h2>Create Account</h2>
+            <p class="subtitle">Join the evolution of digital communication</p>
+            
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="name@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="text" id="phone" placeholder="+1 (555) 000-0000" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+
+                <div style="margin-bottom: 24px; font-size: 13px; color: var(--text-secondary);">
+                    By signing up, you agree to our <a href="#" class="nav-link" style="display: inline;">Terms of Service</a>.
+                </div>
+
+                <button type="submit" class="btn-primary" style="width: 100%;">Create Account</button>
+            </form>
+            
+            <div class="bottom-info" style="margin-top: 40px; border-top: 1px solid var(--border-color); padding-top: 24px;">
+                Already have an account? <a href="login.html">Sign In</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="copyright">&copy; 2024 NxChat. Precision in Every Message.</div>
+        <div class="footer-links">
+            <a href="#" class="footer-link">Security</a>
+            <a href="#" class="footer-link">Privacy Policy</a>
+            <a href="#" class="footer-link">Status</a>
+        </div>
+    </footer>
+
+    <script src="auth.js"></script>
+</body>
+</html>

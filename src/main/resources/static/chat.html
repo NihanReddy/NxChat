@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="https://unpkg.com/picmo@latest/dist/umd/index.js"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "tertiary-dim": "var(--tertiary-dim)",
+            "surface-container-high": "var(--surface-container-high)",
+            "error-container": "var(--error-container)",
+            "on-background": "var(--on-background)",
+            "surface-variant": "var(--surface-variant)",
+            "tertiary": "var(--tertiary)",
+            "on-primary": "var(--on-primary)",
+            "secondary": "var(--secondary)",
+            "on-primary-fixed": "var(--on-primary-fixed)",
+            "secondary-fixed-dim": "var(--secondary-fixed-dim)",
+            "on-surface-variant": "var(--on-surface-variant)",
+            "inverse-primary": "var(--inverse-primary)",
+            "on-tertiary-container": "var(--on-tertiary-container)",
+            "surface-container-lowest": "var(--surface-container-lowest)",
+            "on-primary-container": "var(--on-primary-container)",
+            "inverse-on-surface": "var(--inverse-on-surface)",
+            "on-error-container": "var(--on-error-container)",
+            "on-secondary": "var(--on-secondary)",
+            "primary": "var(--primary)",
+            "secondary-fixed": "var(--secondary-fixed)",
+            "surface-container": "var(--surface-container)",
+            "secondary-dim": "var(--secondary-dim)",
+            "surface-dim": "var(--surface-dim)",
+            "primary-container": "var(--primary-container)",
+            "surface-tint": "var(--surface-tint)",
+            "on-secondary-fixed-variant": "var(--on-secondary-fixed-variant)",
+            "on-tertiary-fixed": "var(--on-tertiary-fixed)",
+            "error": "var(--error)",
+            "outline": "var(--outline)",
+            "background": "var(--background)",
+            "on-surface": "var(--on-surface)",
+            "surface-bright": "var(--surface-bright)",
+            "surface": "var(--surface)",
+            "on-tertiary": "var(--on-tertiary)",
+            "outline-variant": "var(--outline-variant)",
+            "on-secondary-fixed": "var(--on-secondary-fixed)",
+            "primary-fixed-dim": "var(--primary-fixed-dim)",
+            "error-dim": "var(--error-dim)",
+            "inverse-surface": "var(--inverse-surface)",
+            "on-tertiary-fixed-variant": "var(--on-tertiary-fixed-variant)",
+            "on-secondary-container": "var(--on-secondary-container)",
+            "primary-dim": "var(--primary-dim)",
+            "primary-fixed": "var(--primary-fixed)",
+            "tertiary-fixed-dim": "var(--tertiary-fixed-dim)",
+            "surface-container-highest": "var(--surface-container-highest)",
+            "surface-container-low": "var(--surface-container-low)",
+            "secondary-container": "var(--secondary-container)",
+            "on-primary-fixed-variant": "var(--on-primary-fixed-variant)",
+            "tertiary-container": "var(--tertiary-container)",
+            "tertiary-fixed": "var(--tertiary-fixed)",
+            "on-error": "var(--on-error)"
+          },
+          fontFamily: {
+            "headline": ["Space Grotesk"],
+            "body": ["Manrope"],
+            "label": ["Manrope"]
+          },
+          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+  <style>
+    :root {
+      /* User Specified Light Mode Palette */
+      --bg-sidebar: #f8f9fa;
+      --bg-chat-list: #ffffff;
+      --bg-chat-window: #e9f1f2;
+      --primary-teal: #2d5d61;
+      --text-main: #1a2b2c;
+      --accent-light: #d1f3f5;
+
+      /* Material Mapping */
+      --primary: var(--primary-teal);
+      --on-primary: #ffffff;
+      --primary-container: var(--accent-light);
+      --on-primary-container: var(--primary-teal);
+      
+      --background: var(--bg-chat-window);
+      --on-background: var(--text-main);
+      
+      --surface: var(--bg-sidebar);
+      --on-surface: var(--text-main);
+      --surface-container-low: var(--bg-chat-list);
+      --surface-container: #edf2f4;
+      --surface-container-highest: #dfe8eb;
+      
+      --outline-variant: rgba(45, 93, 97, 0.15);
+      --on-surface-variant: #4a5d5e;
+      
+      --secondary: #5a41d9;
+      --error: #ba1a1a;
+      
+      /* UI Logic Overrides */
+      --glass-bg: rgba(255, 255, 255, 0.8);
+      --glass-border: rgba(45, 93, 97, 0.1);
+    }
+
+    .dark {
+      /* Preservation of existing Dark Mode Palette */
+      --tertiary-dim: #ff5dd7;
+      --surface-container-high: #00242a;
+      --error-container: #9f0519;
+      --on-background: #b7eefc;
+      --surface-variant: #002a32;
+      --tertiary: #ff5dd7;
+      --on-primary: #005d63;
+      --secondary: #ac89ff;
+      --on-primary-fixed: #003f43;
+      --secondary-fixed-dim: #ceb9ff;
+      --on-surface-variant: #7eb3c1;
+      --inverse-primary: #006a71;
+      --on-tertiary-container: #0e000a;
+      --surface-container-lowest: #000000;
+      --on-primary-container: #005359;
+      --inverse-on-surface: #235c68;
+      --on-error-container: #ffa8a3;
+      --on-secondary: #290067;
+      --primary: #8ff5ff;
+      --secondary-fixed: #dac9ff;
+      --surface-container: #001d23;
+      --secondary-dim: #874cff;
+      --surface-dim: #001115;
+      --primary-container: #00eefc;
+      --surface-tint: #8ff5ff;
+      --on-secondary-fixed-variant: #6300e2;
+      --on-tertiary-fixed: #34002a;
+      --error: #ff716c;
+      --outline: #477d89;
+      --background: #001115;
+      --on-surface: #b7eefc;
+      --surface-bright: #00313a;
+      --surface: #001115;
+      --on-tertiary: #430036;
+      --outline-variant: #114f5a;
+      --on-secondary-fixed: #41009a;
+      --primary-fixed-dim: #00deec;
+      --error-dim: #d7383b;
+      --inverse-surface: #effbff;
+      --on-tertiary-fixed-variant: #6f005c;
+      --on-secondary-container: #f8f1ff;
+      --primary-dim: #00deec;
+      --primary-fixed: #00eefc;
+      --tertiary-fixed-dim: #ff6ad8;
+      --surface-container-highest: #002a32;
+      --surface-container-low: #00161b;
+      --secondary-container: #7000ff;
+      --on-primary-fixed-variant: #005e64;
+      --tertiary-container: #fe00d5;
+      --tertiary-fixed: #ff87db;
+      --on-error: #490006;
+
+      --glass-bg: rgba(0, 42, 50, 0.6);
+      --glass-border: rgba(143, 245, 255, 0.1);
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .nav-active {
+      @apply bg-surface-container-highest border-l-4 border-primary relative text-primary !important;
+    }
+    .glass-panel {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Custom Sleek Scrollbar */
+    #messages::-webkit-scrollbar { width: 8px; }
+    #messages::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.05); }
+    #messages::-webkit-scrollbar-thumb { background: var(--primary); opacity: 0.2; border-radius: 20px; border: 2px solid transparent; background-clip: content-box; filter: brightness(1.2); }
+    #messages::-webkit-scrollbar-thumb:hover { background: var(--primary); filter: brightness(1.4); }
+
+    /* Section switching */
+    .section-hidden { opacity: 0; transform: translateX(-10px); pointer-events: none; }
+    .section-visible { opacity: 1; transform: translateX(0); }
+
+    /* Layout 'White Lines' fix & CSS Reset */
+    * { border-color: transparent !important; border-style: solid; border-width: 0; box-sizing: border-box; }
+    .border-outline-variant\/10 { border-color: rgba(143, 245, 255, 0.1) !important; border-width: 1px !important; }
+    aside, main, section, div, header, footer { border-collapse: collapse; outline: none; }
+    .border-b { border-bottom-width: 1px !important; border-color: rgba(143, 245, 255, 0.1) !important; }
+    .border-r { border-right-width: 1px !important; border-color: rgba(143, 245, 255, 0.1) !important; }
+    .border-l-4 { border-left-width: 4px !important; border-color: var(--primary) !important; }
+    
+    /* Ensure dark theme seamlessness */
+    html.dark body { background-color: #001115; }
+    .bg-slate-950\/40 { background-color: rgba(2, 6, 23, 0.4); }
+
+    /* Filter Active Hover Fix */
+    .filter-active:hover {
+      background-color: var(--primary) !important;
+      opacity: 1 !important;
+    }
+    /* --- High-Fidelity Emoji Picker Refactor --- */
+    #emojiPickerContainer {
+      background-color: var(--surface-container-highest) !important;
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(94, 234, 212, 0.1);
+    }
+
+    /* Target the top navigation/header row */
+    #emojiPickerContainer [class*="header"],
+    #emojiPickerContainer [class*="nav"] {
+      width: 100% !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-around !important;
+      background-color: #1A2B2C !important; /* Darker solid header */
+      padding: 14px 8px !important;
+      border-bottom: 1px solid rgba(94, 234, 212, 0.1) !important;
+      gap: 12px !important;
+      overflow-x: hidden !important;
+    }
+
+    /* Icon Contrast & Vibrant Styling */
+    #emojiPickerContainer [class*="category-button"],
+    #emojiPickerContainer [class*="nav-button"],
+    #emojiPickerContainer [class*="header"] button {
+      color: #5EEAD4 !important; /* Bright Teal */
+      font-size: 1.2rem !important;
+      transition: all 0.3s ease !important;
+      background: transparent !important;
+      opacity: 0.7 !important;
+      cursor: pointer !important;
+      position: relative !important;
+    }
+
+    #emojiPickerContainer [class*="category-button"]:hover {
+      color: #FFFFFF !important;
+      opacity: 1 !important;
+      transform: translateY(-2px);
+    }
+
+    /* Active State (Glow) */
+    #emojiPickerContainer [class*="active"],
+    #emojiPickerContainer [class*="selected"] {
+      color: #FFFFFF !important;
+      opacity: 1 !important;
+      filter: drop-shadow(0 0 8px rgba(94, 234, 212, 0.8)) !important;
+    }
+
+    /* Search Integration */
+    #emojiPickerContainer [class*="search-container"] {
+      padding: 12px !important;
+      background-color: #1A2B2C !important;
+      margin-top: 0 !important;
+    }
+
+    #emojiPickerContainer [class*="search-field"],
+    #emojiPickerContainer input[type="text"] {
+      background-color: #0F1A1B !important; /* Deeper depth */
+      border: 1px solid rgba(94, 234, 212, 0.2) !important;
+      border-radius: 12px !important;
+      color: #FFFFFF !important;
+      padding: 10px 14px 10px 40px !important; /* Space for icon */
+      font-size: 0.9rem !important;
+      width: 100% !important;
+      outline: none !important;
+    }
+
+    #emojiPickerContainer [class*="search-icon"] {
+      display: block !important; /* Re-enable */
+      position: absolute !important;
+      left: 24px !important;
+      top: 50% !important;
+      transform: translateY(-50%) !important;
+      color: #5EEAD4 !important;
+      pointer-events: none !important;
+      opacity: 0.6 !important;
+    }
+  </style>
+<link rel="stylesheet" href="auth.css">
+</head>
+<body class="bg-background text-on-surface font-body overflow-hidden h-screen flex flex-row transition-colors duration-500">
+<!-- SideNavBar Anchor -->
+<aside id="desktopSidebar" class="hidden md:flex flex-col h-full py-8 px-4 bg-surface backdrop-blur-md h-screen w-72 rounded-r-none font-['Manrope'] font-medium shrink-0 transition-all duration-300 border-r border-outline-variant/10">
+<div class="mb-10 px-4 flex items-center justify-between">
+<h1 id="sidebarLogoText" class="text-xl font-bold text-primary font-['Space_Grotesk'] tracking-tighter">NxChat</h1>
+<div class="flex items-center gap-2">
+<button id="collapseSidebarBtn" class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface-variant hover:bg-primary/10 hover:text-primary flex items-center justify-center transition-all">
+<span class="material-symbols-outlined text-lg">menu_open</span>
+</button>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<!-- Chats Active Tab -->
+<a data-tab="chats" class="nav-active flex items-center gap-4 px-4 py-3 hover:bg-white/5 hover:text-primary transition-colors duration-300 ease-in-out cursor-pointer" href="#">
+<span class="material-symbols-outlined shrink-0" data-icon="forum">forum</span>
+<span class="sidebar-text">Chats</span>
+</a>
+<a data-tab="contacts" class="text-slate-500 flex items-center gap-4 px-4 py-3 hover:bg-white/5 hover:text-primary transition-colors duration-300 ease-in-out cursor-pointer" href="#">
+<span class="material-symbols-outlined shrink-0" data-icon="person_add">person_add</span>
+<span class="sidebar-text">Contacts</span>
+</a>
+<a data-tab="profile" id="profileBtn" class="text-slate-500 flex items-center gap-4 px-4 py-3 hover:bg-white/5 hover:text-primary transition-colors duration-300 ease-in-out cursor-pointer" href="#">
+<span class="material-symbols-outlined shrink-0" data-icon="account_circle">account_circle</span>
+<span id="profileName" class="sidebar-text">Profile</span>
+</a>
+</nav>
+<div class="mt-auto space-y-1 border-t border-white/5 pt-6">
+<button id="themeToggle" class="flex items-center gap-4 px-4 py-3 text-slate-500 hover:bg-white/5 hover:text-primary transition-colors duration-300 ease-in-out cursor-pointer w-full text-left">
+  <span class="material-symbols-outlined shrink-0">dark_mode</span>
+  <span class="sidebar-text">Display Mode</span>
+</button>
+
+<button id="syncContactsBtn" class="w-full mb-6 mt-2 bg-surface-container hover:bg-primary/20 border border-primary/30 text-primary font-bold py-3 rounded-full flex items-center justify-center gap-2 active:scale-95 transition-all">
+<span class="material-symbols-outlined shrink-0" data-icon="sync">sync</span>
+<span class="sidebar-text">Sync Contacts</span>
+</button>
+<a class="flex items-center gap-4 px-4 py-3 text-slate-500 hover:bg-white/5 hover:text-primary transition-colors duration-300 ease-in-out" href="help.html">
+<span class="material-symbols-outlined shrink-0" data-icon="help">help</span>
+        <span class="sidebar-text">Help</span>
+      </a>
+<a id="logoutActionBtn" class="flex items-center gap-4 px-4 py-3 text-slate-500 hover:bg-white/5 hover:text-primary transition-colors duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined shrink-0" data-icon="logout">logout</span>
+        <span class="sidebar-text">Logout</span>
+      </a>
+<a id="deleteAccountActionBtn" class="flex items-center gap-4 px-4 py-3 text-error hover:bg-error/10 hover:text-error transition-colors duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined shrink-0" data-icon="person_remove">person_remove</span>
+        <span class="sidebar-text">Delete Account</span>
+      </a>
+</div>
+</aside>
+<!-- Main Chat Workspace -->
+<main class="flex-1 flex flex-row h-full overflow-hidden relative items-stretch justify-start m-0 p-0 min-h-0">
+<!-- Left Section: Contacts & Filters -->
+<section class="w-full md:w-96 flex flex-col bg-surface-container-low shrink-0 border-r border-outline-variant/10 hidden" id="contactsSection">
+<div class="p-6 space-y-6">
+<div class="flex items-center justify-between">
+<h2 class="text-2xl font-headline font-bold text-primary tracking-tight">Messages</h2>
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-highest text-primary hover:bg-primary/10 transition-colors" id="addContactBtn">
+<span class="material-symbols-outlined" data-icon="person_add">person_add</span>
+</button>
+</div>
+        <!-- Search -->
+<div class="relative">
+<input id="contactSearchInput" type="text" placeholder="Search contacts..." class="w-full bg-surface-container-highest border border-outline-variant rounded-xl px-4 py-3 text-on-surface placeholder:text-on-surface-variant focus:ring-2 focus:ring-primary focus:border-transparent">
+</div>
+        <!-- Requests Toggle -->
+<div class="flex items-center justify-between pb-2 mb-4">
+<button id="toggleRequests" class="text-sm text-on-surface-variant hover:text-primary flex items-center gap-1">
+<span class="material-symbols-outlined">expand_less</span>
+<span>Requests</span>
+</button>
+</div>
+<div id="requestsContainer" class="flex flex-col h-[30vh] overflow-hidden mb-4">
+<div id="requestList" class="flex-1 overflow-y-auto no-scrollbar space-y-1 px-3">
+<!-- Dynamic requests loaded by JS -->
+</div>
+</div>
+        <!-- Collapsible Toggle -->
+<div class="flex items-center justify-between pb-2">
+<button id="toggleContacts" class="text-sm text-on-surface-variant hover:text-primary flex items-center gap-1">
+<span class="material-symbols-outlined">expand_less</span>
+<span>Contacts</span>
+</button>
+</div>
+<div id="noContacts" class="hidden flex flex-col items-center justify-center py-12 text-center">
+<p class="text-on-surface-variant mb-4">No contacts yet</p>
+<button id="addContactNoContactsBtn" class="bg-primary text-on-primary-fixed px-6 py-2 rounded-full font-medium flex items-center gap-2">
+<span class="material-symbols-outlined">person_add</span>
+Add Contact
+</button>
+</div>
+        </div>
+<!-- Contact List -->
+<div id="contactsContainer" class="flex flex-col h-full">
+<div id="leftList" class="flex-1 overflow-y-auto no-scrollbar space-y-1 px-3 section-visible">
+<!-- Dynamic contacts loaded by JS -->
+</div>
+</div>
+</section>
+
+<!-- Middle Section: Chats List (for section switching) -->
+<section id="middleSection" class="w-full md:w-96 flex flex-col bg-surface-container-low shrink-0 border-r border-outline-variant/10 section-visible">
+<div class="p-6 space-y-6">
+<h2 class="text-2xl font-headline font-bold text-primary tracking-tight">Chats</h2>
+<!-- Search -->
+<div class="relative">
+<input id="middleSearchInput" type="text" placeholder="Search chats..." class="w-full bg-surface-container-highest border border-outline-variant rounded-xl px-4 py-3 text-on-surface placeholder:text-on-surface-variant focus:ring-2 focus:ring-primary focus:border-transparent">
+</div>
+<!-- Filters -->
+<div class="flex gap-2">
+<button data-filter="all" class="px-4 py-1.5 rounded-full text-sm font-medium bg-primary text-white filter-active">All</button>
+<button data-filter="unread" class="px-4 py-1.5 rounded-full text-sm font-medium border border-outline-variant text-on-surface-variant hover:bg-white/5 transition-colors">Unread</button>
+<button data-filter="group" class="px-4 py-1.5 rounded-full text-sm font-medium border border-outline-variant text-on-surface-variant hover:bg-white/5 transition-colors">Group</button>
+</div>
+<div id="noRecentChats" class="flex flex-col items-center justify-center py-12 text-center hidden">
+<p class="text-on-surface-variant mb-4">No recent transmissions</p>
+</div>
+</div>
+<div id="middleContainer" class="flex flex-col h-full relative">
+  <div id="middleList" class="flex-1 overflow-y-auto no-scrollbar space-y-1 px-3">
+    <!-- Dynamic chats loaded by JS -->
+  </div>
+  <!-- Create Group Trigger -->
+  <div class="px-6 py-4 bg-surface-container-low border-t border-outline-variant/10">
+    <button id="openCreateGroupModal" class="w-full bg-primary/10 hover:bg-primary/20 text-primary font-bold py-3 rounded-full flex items-center justify-center gap-2 transition-all active:scale-95">
+      <span class="material-symbols-outlined">group_add</span>
+      Create New Group
+    </button>
+  </div>
+</div>
+</section>
+
+<!-- Resizer Handle -->
+<div id="resizer" class="hidden md:block w-[4px] cursor-col-resize bg-outline-variant/10 hover:bg-[#2D5D61] transition-colors relative z-30 shrink-0"></div>
+
+<!-- Right Section: Active Chat -->
+<section id="rightSection" class="flex-1 hidden md:flex flex-col h-full bg-background relative min-h-0 transition-colors duration-500">
+
+<!-- Chat Header -->
+<header id="chatHeader" class="h-20 shrink-0 flex items-center justify-between px-8 bg-surface-container/60 backdrop-blur-3xl border-b border-white/5 z-20 sticky top-0 hidden">
+  <div class="flex items-center gap-4">
+    <button id="mobileBackBtn" class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface-variant hover:bg-primary/10 flex items-center justify-center md:hidden shrink-0 transition-colors">
+      <span class="material-symbols-outlined">arrow_back</span>
+    </button>
+    <div class="w-10 h-10 rounded-full overflow-hidden border border-primary-container shadow-2xl">
+      <img id="headerAvatar" alt="Active Profile" class="w-full h-full object-cover" src="https://ui-avatars.com/api/?name=Chat&background=8ff5ff&color=001115"/>
+    </div>
+    <div class="flex flex-col">
+      <h3 id="headerName" class="text-base font-headline font-bold text-on-surface leading-tight">Select a chat</h3>
+      <div class="flex items-center gap-1">
+        <span id="headerStatusDot" class="w-2 h-2 bg-on-surface-variant/20 rounded-full transition-colors duration-500"></span>
+        <span id="headerStatusText" class="text-[9px] text-on-surface-variant/60 font-label uppercase tracking-widest">Offline</span>
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center gap-2">
+    <button id="pinChatBtn" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-primary/10 hover:text-primary transition-all" title="Pin DM chat">
+      <span class="material-symbols-outlined">keep</span>
+    </button>
+    <!-- Clear Chat Action -->
+    <button id="deleteChatBtn" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-error/10 hover:text-error transition-all" title="Delete conversation history">
+      <span class="material-symbols-outlined">delete</span>
+    </button>
+  </div>
+</header>
+<!-- Pending Requests Banner -->
+<div id="pendingRequestsBanner" class="hidden bg-gradient-to-r from-primary to-secondary text-on-primary-fixed p-4 rounded-xl shadow-2xl mb-6 mx-8 border border-primary/30">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">notifications</span>
+      <div>
+        <p class="font-bold">Pending connection requests</p>
+        <p class="text-sm opacity-90">Check Contacts tab to accept</p>
+      </div>
+    </div>
+    <button id="dismissBanner" class="text-on-primary-fixed hover:text-primary text-xl font-bold">&times;</button>
+  </div>
+</div>
+<!-- Message History -->
+<div id="messages" class="flex-grow flex flex-col overflow-y-auto p-12 space-y-6 bg-background dark:bg-[#0a0a0a] min-h-0 relative">
+  <div class="flex flex-col items-center justify-center h-full text-on-surface-variant/10 italic text-center" id="emptyStatePlaceholder">
+    <p class="text-3xl font-light tracking-tighter opacity-20">Add users to start chat</p>
+  </div>
+</div>
+<!-- Chat Input Area -->
+<footer class="p-8 pt-4 w-full flex-shrink-0">
+  <div class="w-full relative group">
+    <div class="absolute -inset-0.5 bg-gradient-to-r from-primary/20 via-secondary/20 to-tertiary/20 rounded-2xl blur opacity-30 group-focus-within:opacity-100 transition duration-1000"></div>
+    <div class="relative bg-surface-container-highest rounded-xl flex items-center gap-4 px-6 py-4 shadow-2xl w-full border border-white/5">
+      <button id="plusBtn" class="text-on-surface-variant hover:text-primary transition-colors shrink-0" title="Send GIF">
+        <span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+      </button>
+      <input id="messageInput" class="w-full flex-1 bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-on-surface-variant/40 font-body py-2 outline-none" placeholder="Transmit a message..." type="text"/>
+      <div class="flex items-center gap-4">
+        <div id="emojiPickerContainer" class="absolute bottom-full right-0 mb-6 z-[100] hidden scale-95 opacity-0 transition-all origin-bottom-right bg-surface-container-highest rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/5"></div>
+        <button id="emojiBtn" class="text-on-surface-variant hover:text-primary transition-colors">
+          <span class="material-symbols-outlined" data-icon="sentiment_satisfied">sentiment_satisfied</span>
+        </button>
+        <button id="sendBtn" class="bg-primary text-on-primary-fixed w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 active:scale-95 transition-all shadow-lg shadow-primary/20">
+          <span class="material-symbols-outlined" data-icon="send" style="font-variation-settings: 'FILL' 1;">send</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</footer>
+</section>
+</main>
+<!-- Mobile Navigation -->
+<nav id="mobileBottomNav" class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-slate-950/80 backdrop-blur-2xl flex justify-around items-center border-t border-outline-variant/10 z-50 px-2">
+<button data-mobile-tab="chats" class="text-cyan-400 flex flex-col items-center min-w-[64px]">
+<span class="material-symbols-outlined" data-icon="forum" style="font-variation-settings: 'FILL' 1;">forum</span>
+<span class="text-[10px] font-label">Chats</span>
+</button>
+<button data-mobile-tab="contacts" class="text-slate-500 flex flex-col items-center min-w-[64px]">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px] font-label">Contacts</span>
+</button>
+<button data-mobile-tab="groups" class="text-slate-500 flex flex-col items-center min-w-[64px]">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="text-[10px] font-label">Groups</span>
+</button>
+<button data-mobile-tab="profile" class="text-slate-500 flex flex-col items-center min-w-[64px]">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="text-[10px] font-label">Profile</span>
+</button>
+</nav>
+<!-- Add Contact Modal -->
+<div id="addContactModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+  <div class="bg-surface-container-highest rounded-3xl p-8 max-w-md w-full relative overflow-hidden transition-all duration-300">
+    <div class="flex items-center justify-between mb-6">
+      <h3 class="text-2xl font-headline font-bold text-primary tracking-tight">Expand Grid</h3>
+      <button id="closeAddContactModal" class="text-on-surface-variant hover:text-primary text-2xl transition-colors">&times;</button>
+    </div>
+    
+    <div class="space-y-6">
+      <p class="text-sm text-on-surface-variant opacity-70">Enter the email or mobile number of the user you wish to establish a sync link with.</p>
+      
+      <div class="group">
+        <label class="block text-xs font-bold text-on-surface-variant/40 uppercase tracking-[0.2em] mb-3 ml-1">Target Email / Mobile</label>
+        <input type="text" id="addContactEmailInput" placeholder="identity@grid.link or +91XXXXXXXXXX" class="w-full bg-surface-container rounded-2xl px-6 py-4 border border-outline-variant/30 text-on-surface focus:ring-2 focus:ring-primary shadow-lg transition-all outline-none">
+      </div>
+
+      <div class="pt-4">
+        <button id="confirmAddContact" class="w-full bg-primary text-on-primary-fixed font-bold py-4 rounded-full shadow-2xl hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-3">
+           <span class="material-symbols-outlined">person_add</span>
+           Establish Connection
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Create Group Modal -->
+<div id="createGroupModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+  <div class="bg-surface-container-highest rounded-3xl p-8 max-w-lg w-full max-h-[90vh] flex flex-col relative overflow-hidden transition-all duration-300">
+    <div class="flex items-center justify-between mb-6">
+      <h3 class="text-2xl font-headline font-bold text-primary tracking-tight">Initiate Group </h3>
+      <button id="closeCreateGroupModal" class="text-on-surface-variant hover:text-primary text-2xl transition-colors">&times;</button>
+    </div>
+    
+    <div class="space-y-6 flex-1 flex flex-col min-h-0">
+      <!-- Group Name -->
+      <div class="group">
+        <label class="block text-xs font-bold text-on-surface-variant/40 uppercase tracking-[0.2em] mb-3 ml-1">Group Name</label>
+        <input type="text" id="groupNameInput" placeholder="Alpha Team, Lab Sync..." class="w-full bg-surface-container rounded-2xl px-6 py-4 border border-outline-variant/30 text-on-surface focus:ring-2 focus:ring-primary shadow-lg transition-all outline-none">
+      </div>
+
+      <!-- Member Selection -->
+      <div class="flex-1 flex flex-col min-h-0">
+        <label class="block text-xs font-bold text-on-surface-variant/40 uppercase tracking-[0.2em] mb-3 ml-1">Add Members</label>
+        <div id="groupMemberSearchList" class="flex-1 overflow-y-auto no-scrollbar space-y-2 pr-2">
+           <!-- Contacts with selection UI loaded via JS -->
+           <p class="text-center py-10 text-on-surface-variant/30 italic">No contacts to add yet.</p>
+        </div>
+      </div>
+
+      <div class="pt-6 border-t border-white/5">
+        <button id="confirmCreateGroup" class="w-full bg-primary text-on-primary-fixed font-bold py-4 rounded-full shadow-2xl hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-3">
+           <span class="material-symbols-outlined">rocket_launch</span>
+           Launch Group
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Group Members Modal -->
+<div id="groupMembersModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+  <div class="bg-surface-container-highest rounded-3xl p-8 max-w-2xl w-full max-h-[90vh] flex flex-col relative overflow-hidden transition-all duration-300">
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <h3 class="text-2xl font-headline font-bold text-primary tracking-tight">Group Members</h3>
+        <p id="groupMembersSubtitle" class="text-xs text-on-surface-variant mt-1">Manage members for this group</p>
+      </div>
+      <button id="closeGroupMembersModal" class="text-on-surface-variant hover:text-primary text-2xl transition-colors">&times;</button>
+    </div>
+
+    <div class="space-y-5 flex-1 flex flex-col min-h-0">
+      <div id="groupAdminPanel" class="hidden">
+        <p class="text-xs uppercase tracking-[0.2em] text-on-surface-variant mb-3">Add Contacts To Group</p>
+        <div id="groupAddCandidates" class="max-h-40 overflow-y-auto no-scrollbar space-y-2 pr-2"></div>
+        <button id="deleteGroupBtn" class="w-full mt-4 bg-error/15 border border-error text-error py-2.5 rounded-xl font-bold hover:bg-error/25 transition-colors">Delete Group</button>
+      </div>
+
+      <div class="flex-1 flex flex-col min-h-0">
+        <p class="text-xs uppercase tracking-[0.2em] text-on-surface-variant mb-3">Current Members</p>
+        <div id="groupMembersList" class="flex-1 overflow-y-auto no-scrollbar space-y-2 pr-2"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DM User Details Modal -->
+<div id="dmUserDetailsModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+  <div class="bg-surface-container-highest rounded-3xl p-8 max-w-md w-full relative overflow-hidden transition-all duration-300">
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <h3 class="text-2xl font-headline font-bold text-primary tracking-tight">User Details</h3>
+        <p class="text-xs text-on-surface-variant mt-1">Tap copy to save contact details</p>
+      </div>
+      <button id="closeDmUserDetailsModal" class="text-on-surface-variant hover:text-primary text-2xl transition-colors">&times;</button>
+    </div>
+
+    <div class="space-y-4">
+      <div>
+        <label class="block text-xs font-bold text-on-surface-variant/40 uppercase tracking-[0.2em] mb-2 ml-1">Email</label>
+        <div class="flex items-center gap-2">
+          <input id="dmUserEmailValue" type="text" readonly class="w-full bg-surface-container rounded-xl px-4 py-3 border border-outline-variant text-on-surface" value="Not available">
+          <button id="copyDmUserEmailBtn" class="px-3 py-2 rounded-xl bg-primary/15 text-primary hover:bg-primary/25 text-sm font-bold transition-colors">Copy</button>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-bold text-on-surface-variant/40 uppercase tracking-[0.2em] mb-2 ml-1">Mobile</label>
+        <div class="flex items-center gap-2">
+          <input id="dmUserPhoneValue" type="text" readonly class="w-full bg-surface-container rounded-xl px-4 py-3 border border-outline-variant text-on-surface" value="Not available">
+          <button id="copyDmUserPhoneBtn" class="px-3 py-2 rounded-xl bg-primary/15 text-primary hover:bg-primary/25 text-sm font-bold transition-colors">Copy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Profile Modal -->
+<div id="profileModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+<div class="bg-surface-container-highest rounded-2xl p-8 max-w-md w-full max-h-[90vh] overflow-y-auto">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-headline font-bold text-on-surface">Profile</h3>
+<button id="closeProfileModal" class="text-on-surface-variant hover:text-primary text-2xl">&times;</button>
+</div>
+<div id="profileContent" class="space-y-6">
+<!-- Dynamic profile info -->
+</div>
+<button id="logoutBtn" class="w-full bg-error text-on-error-container py-3 rounded-xl font-bold hover:bg-error/90 transition-colors">Logout</button><br>
+<button id="deleteAccountBtn" class="w-full mt-3 bg-error/15 border border-error text-error py-3 rounded-xl font-bold hover:bg-error/25 transition-colors">Delete Account</button>
+</div>
+</div>
+
+<!-- GIF Picker Modal -->
+<div id="gifPickerModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+  <div class="bg-surface-container-highest rounded-3xl p-6 max-w-2xl w-full max-h-[90vh] flex flex-col overflow-hidden border border-outline-variant/20">
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="text-xl font-headline font-bold text-primary">Send GIF</h3>
+      <button id="closeGifPickerModal" class="text-on-surface-variant hover:text-primary text-2xl transition-colors">&times;</button>
+    </div>
+    <div class="mb-4">
+      <input id="gifSearchInput" type="text" placeholder="Search GIFs (e.g. happy, wow, hello)" class="w-full bg-surface-container rounded-xl px-4 py-3 border border-outline-variant text-on-surface placeholder:text-on-surface-variant focus:ring-2 focus:ring-primary focus:border-transparent" />
+    </div>
+    <div id="gifResults" class="grid grid-cols-2 md:grid-cols-3 gap-3 overflow-y-auto no-scrollbar pr-1">
+      <div class="col-span-full text-center text-on-surface-variant py-8">Search to load GIFs</div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  // Mobile sidebar toggle
+  const mobileToggle = document.getElementById('mobileSidebarToggle');
+  const sidebar = document.querySelector('aside');
+  if (mobileToggle && sidebar) {
+    mobileToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('translate-x-[-100%]');
+    });
+  }
+})();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.2/dist/sockjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+<script src="js/chat-mobile-nav.js"></script>
+<script src="js/chat-gif.js"></script>
+<script src="js/chat-profile.js"></script>
+<script src="js/chat-contacts.js"></script>
+<script src="js/chat-group.js"></script>
+<script src="js/chat-header-pin.js"></script>
+<script src="chat.js"></script>
+
+</body></html>
